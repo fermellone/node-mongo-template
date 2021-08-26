@@ -11,6 +11,8 @@
     "rules": {
         "no-console": "warn",
         "object-curly-spacing": ["error", "always"],
-        "array-bracket-spacing": ["error", "always"]
+        "array-bracket-spacing": ["error", "always"],
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"]
     }
 }

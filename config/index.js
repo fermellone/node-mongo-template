@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 
 const config = {
     dev: process.env.NODE_ENV !== 'production',
@@ -7,6 +7,6 @@ const config = {
     dbPassword: process.env.DB_PASSWORD,
     dbHost: process.env.DB_HOST,
     dbName: process.env.DB_NAME
-}
+};
 
-module.exports = { config }
+module.exports = { config };
