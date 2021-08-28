@@ -2,6 +2,14 @@ const { Router } = require('express');
 
 const ItemsService = require('../services/items');
 
+const {
+    itemIdSchema,
+    createItemSchema,
+    updateItemSchema
+} = require('../utils/schemas/items');
+
+const validationHandler = require('../utils/middlewares/validationHandler');
+
 const itemsApi = (app) => {
     const router = new Router();
 
@@ -25,7 +33,7 @@ const itemsApi = (app) => {
         }
     });
 
-    router.get('/:itemId', async (req, res, next) => {
+    router.get('/:itemId', validationHandler({ itemId: itemIdSchema }, 'params'), async (req, res, next) => {
         const itemId = req.params.itemId;
 
         try {
@@ -41,7 +49,7 @@ const itemsApi = (app) => {
         }
     });
 
-    router.post('/', async (req, res, next) => {
+    router.post('/', validationHandler(createItemSchema), async (req, res, next) => {
         const { body: item } = req;
 
         try {
@@ -57,7 +65,7 @@ const itemsApi = (app) => {
         }
     });
 
-    router.put('/:itemId', async (req, res, next) => {
+    router.put('/:itemId', validationHandler({ itemId: itemIdSchema }, 'params'), validationHandler(updateItemSchema), async (req, res, next) => {
         const itemId = req.params.itemId;
         const { body: item } = req;
 
@@ -74,7 +82,7 @@ const itemsApi = (app) => {
         }
     });
 
-    router.delete('/:itemId', async (req, res, next) => {
+    router.delete('/:itemId', validationHandler({ itemId: itemIdSchema }, 'params'), async (req, res, next) => {
         const itemId = req.params.itemId;
         
         try {
