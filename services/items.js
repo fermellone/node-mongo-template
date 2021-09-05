@@ -15,7 +15,9 @@ class ItemsService {
     }
 
     async getItem({ itemId }) {
-        const item = await this.mongoDB.get(this.collection, itemId);
+        const item = await this.mongoDB.get(this.collection, {
+            _id: itemId,
+        });
 
         return item || {};
     }
